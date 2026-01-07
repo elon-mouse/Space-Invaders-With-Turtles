@@ -2,7 +2,7 @@ import turtle
 
 wn = turtle.Screen()
 ship = turtle.Turtle()
-
+wn.setup(width=1920, height=1080)
 wn.bgcolor("white")
 wn.title("SPACE_INVADERS")
 ship.color("red")
@@ -20,9 +20,9 @@ def left():
     y = ship.ycor()
     ship.goto(x-15,y)
 
-wn.onkey(right, "Right")
+wn.onkeypress(right, "Right")
 
-wn.onkey(left, "Left")
+wn.onkeypress(left, "Left")
 
 wn.listen()
 wn.mainloop()
