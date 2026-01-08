@@ -21,7 +21,7 @@ def bullet():
     y = ship.ycor()
     laser.speed(0)
     laser.goto(x,y)
-    laser.speed(7)
+    laser.speed(2)
     laser.forward(10000)
     
 
