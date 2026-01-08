@@ -6,7 +6,7 @@ wn.setup(width=1920, height=1080)
 wn.bgcolor("white")
 wn.title("SPACE_INVADERS")
 ship.color("red")
-ship.speed(5)
+ship.speed(0)
 ship.left(90)
 ship.penup()
 
