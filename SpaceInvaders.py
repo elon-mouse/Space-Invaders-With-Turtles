@@ -10,10 +10,16 @@ ship.speed(0)
 ship.left(90)
 ship.penup()
 
-lazer = turtle.Turtle()
-lazer.speed(7)
-lazer.color("red")
+laser = turtle.Turtle()
+laser.speed(7)
+laser.color("red")
 
+def laser(x,y):
+    x = ship.xcor()
+    y = ship.ycor()
+    laser.goto(x,y)
+    laser.left(90)
+    laser.forward(10000000)
 
 def right():
     x = ship.xcor()
