@@ -14,6 +14,7 @@ laser = turtle.Turtle()
 laser.color("red")
 laser.shape("circle")
 laser.left(90)
+laser.penup()
 
 def bullet():
     x = ship.xcor()
