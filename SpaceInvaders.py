@@ -31,7 +31,7 @@ def left():
     y = ship.ycor()
     ship.goto(x-15,y)
 
-wn.onkey(laser, "Space")
+wn.onkey(laser, "space")
 
 wn.onkeypress(right, "Right")
 
