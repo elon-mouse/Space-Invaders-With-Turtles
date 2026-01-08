@@ -20,6 +20,7 @@ def bullet():
     laser.speed(0)
     laser.goto(x,y)
     laser.speed(7)
+    laser.left(90)
     laser.forward(10000)
     
 
