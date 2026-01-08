@@ -14,12 +14,12 @@ laser = turtle.Turtle()
 laser.speed(7)
 laser.color("red")
 
-def laser(x,y):
+def laser():
     x = ship.xcor()
     y = ship.ycor()
     laser.goto(x,y)
     laser.left(90)
-    laser.forward(10000000)
+    laser.forward(10)
 
 def right():
     x = ship.xcor()
@@ -31,7 +31,7 @@ def left():
     y = ship.ycor()
     ship.goto(x-15,y)
 
-wn.onkey(laser, "space")
+wn.onkeypress(laser, "space") 
 
 wn.onkeypress(right, "Right")
 
