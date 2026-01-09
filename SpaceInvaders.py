@@ -1,4 +1,7 @@
 import turtle
+import random
+import time
+
 
 wn = turtle.Screen()
 ship = turtle.Turtle()
@@ -9,8 +12,6 @@ ship.color("red")
 ship.speed(0)
 ship.left(90)
 ship.penup()
-import random
-import time
 
 rng = random.Random()
 
