@@ -13,6 +13,7 @@ ship.speed(0)
 ship.left(90)
 ship.penup()
 
+
 rng = random.Random()
 
 enemy = []
@@ -34,16 +35,17 @@ laser.color("red")
 laser.shape("circle")
 laser.left(90)
 laser.penup()
+laser.hideturtle()
 
 def bullet():
-    laser.showturtle()
     x = ship.xcor()
     y = ship.ycor()
     laser.speed(0)
     laser.goto(x,y)
     laser.speed(2)
+    laser.showturtle()
     laser.forward(10000)
-    laser.hideturtle()
+    
     
 
 def right():
