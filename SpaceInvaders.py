@@ -16,15 +16,15 @@ ship.penup()
 rng = random.Random()
 
 enemy = []
-for i in range(55):
+for i in range(58):
     a = turtle.Turtle()
     a.hideturtle()
     a.speed(0)
     a.shape("circle")
     a.penup()
     a.color("grey")
-    x=rng.randrange(-5,5)
-    y=rng.randrange(0,10)
+    x=rng.randrange(-3,3)
+    y=rng.randrange(1,6)
     a.goto(x*100,y*100)
     enemy.append(a)
     a.showturtle()
