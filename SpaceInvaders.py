@@ -5,7 +5,7 @@ import time
 
 wn = turtle.Screen()
 ship = turtle.Turtle()
-wn.setup(width=1920, height=1080)
+wn.setup(width=1280, height=960)
 wn.bgcolor("white")
 wn.title("SPACE_INVADERS")
 ship.color("red")
