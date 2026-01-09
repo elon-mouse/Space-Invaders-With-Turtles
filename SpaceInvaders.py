@@ -22,9 +22,9 @@ for i in range(25):
     a.shape("circle")
     a.penup()
     a.color("grey")
-    x=rng.randrange(1,10)
-    y=rng.randrange(1,10)
-    a.goto(x*10,y*10)
+    x=rng.randrange(-5,5)
+    y=rng.randrange(0,10)
+    a.goto(x*100,y*100)
     enemy.append(a)
     a.showturtle()
 
