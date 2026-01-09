@@ -13,11 +13,10 @@ ship.speed(0)
 ship.left(90)
 ship.penup()
 
-
 rng = random.Random()
 
 enemy = []
-for i in range(25):
+for i in range(55):
     a = turtle.Turtle()
     a.hideturtle()
     a.speed(0)
@@ -46,8 +45,6 @@ def bullet():
     laser.showturtle()
     laser.forward(10000)
     
-    
-
 def right():
     x = ship.xcor()
     y = ship.ycor()
@@ -58,11 +55,11 @@ def left():
     y = ship.ycor()
     ship.goto(x-15,y)
 
+
 wn.onkeypress(bullet, "space") 
-
 wn.onkeypress(right, "Right")
-
 wn.onkeypress(left, "Left")
+
 
 wn.listen()
 wn.mainloop()
