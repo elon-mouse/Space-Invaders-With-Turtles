@@ -36,12 +36,14 @@ laser.left(90)
 laser.penup()
 
 def bullet():
+    laser.showturtle()
     x = ship.xcor()
     y = ship.ycor()
     laser.speed(0)
     laser.goto(x,y)
     laser.speed(2)
     laser.forward(10000)
+    laser.hideturtle()
     
 
 def right():
