@@ -9,6 +9,24 @@ ship.color("red")
 ship.speed(0)
 ship.left(90)
 ship.penup()
+import random
+import time
+
+rng = random.Random()
+
+enemy = []
+for i in range(25):
+    a = turtle.Turtle()
+    a.hideturtle()
+    a.speed(0)
+    a.shape("circle")
+    a.penup()
+    a.color("grey")
+    x=rng.randrange(1,10)
+    y=rng.randrange(1,10)
+    a.goto(x*10,y*10)
+    enemy.append(a)
+    a.showturtle()
 
 laser = turtle.Turtle()
 laser.color("red")
