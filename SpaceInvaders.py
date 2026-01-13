@@ -6,7 +6,7 @@ import time
 wn = turtle.Screen()
 ship = turtle.Turtle()
 wn.setup(width=480, height=640)
-wn.bgcolor("white")
+wn.bgcolor("black")
 wn.title("SPACE_INVADERS")
 ship.color("red")
 ship.speed(0)
@@ -23,7 +23,6 @@ for i in range(7):
     enemy.penup()
     enemy.color("grey")
     enemy.goto(-30*i,30*i)
-
 
 
 list1=[]
