@@ -5,7 +5,7 @@ import time
 
 wn = turtle.Screen()
 ship = turtle.Turtle()
-wn.setup(width=480, height=640)
+wn.setup(width=1920, height=1080)
 wn.bgcolor("black")
 wn.title("SPACE_INVADERS")
 ship.color("red")
@@ -14,16 +14,26 @@ ship.left(90)
 ship.penup()
 ship.goto(0,-200)
 
+list2=[]
 
-for i in range(7):
+for i in range(12):
     enemy = turtle.Turtle()
     enemy.showturtle()
     enemy.speed(0)
     enemy.shape("circle")
     enemy.penup()
+    list2.append(enemy)
     enemy.color("grey")
-    enemy.goto(-30*i,30*i)
-
+    enemy.goto(-30*i,15)
+for i in range(12):
+    enemy = turtle.Turtle()
+    enemy.showturtle()
+    enemy.speed(0)
+    enemy.shape("circle")
+    enemy.penup()
+    list2.append(enemy)
+    enemy.color("grey")
+    enemy.goto(30*i,15)
 
 list1=[]
 
@@ -52,9 +62,10 @@ def left():
     y = ship.ycor()
     ship.goto(x-15,y)
 
-wn.onkeypress(bullet, "space") 
+
 wn.onkeypress(right, "Right")
 wn.onkeypress(left, "Left")
+wn.onkeypress(bullet, "space") 
 
 keepgoing = True
 def gameloop():
@@ -62,6 +73,13 @@ def gameloop():
     for b in list1:
         b.showturtle()
         b.forward(30)
+        for e in list2: 
+            if (e.ycor()<=-b.xcor())<=30:
+                if abs(e.xcor()-b.xcor())<=30:
+                    wn.score+=1
+                    e.hideturtle()
+                    list2.remove(e)
+
     wn.update() 
     if keepgoing: 
         wn.ontimer(gameloop, 16)
