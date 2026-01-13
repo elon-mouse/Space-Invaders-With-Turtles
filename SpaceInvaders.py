@@ -5,14 +5,14 @@ import time
 
 wn = turtle.Screen()
 ship = turtle.Turtle()
-wn.setup(width=1280, height=960)
+wn.setup(width=480, height=640)
 wn.bgcolor("white")
 wn.title("SPACE_INVADERS")
 ship.color("red")
 ship.speed(0)
 ship.left(90)
 ship.penup()
-
+ship.goto(0,-200)
 
 
 for i in range(7):
@@ -41,7 +41,6 @@ def bullet():
     laser.speed(0)
     laser.goto(x,y)
     laser.showturtle()
-    laser.speed(16)
 
     
 def right():
@@ -54,7 +53,6 @@ def left():
     y = ship.ycor()
     ship.goto(x-15,y)
 
-
 wn.onkeypress(bullet, "space") 
 wn.onkeypress(right, "Right")
 wn.onkeypress(left, "Left")
@@ -64,15 +62,10 @@ def gameloop():
     global keepgoing 
     for b in list1:
         b.showturtle()
-        b.forward(5)
-
-
-
-
+        b.forward(30)
     wn.update() 
     if keepgoing: 
         wn.ontimer(gameloop, 16)
-
 gameloop()
 wn.listen()
 wn.mainloop()
