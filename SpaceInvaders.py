@@ -55,12 +55,12 @@ def bullet():
 def right():
     x = ship.xcor()
     y = ship.ycor()
-    ship.goto(x+15,y)
+    ship.goto(x+30,y)
     
 def left():
     x = ship.xcor()
     y = ship.ycor()
-    ship.goto(x-15,y)
+    ship.goto(x-30,y)
 
 
 wn.onkeypress(right, "Right")
