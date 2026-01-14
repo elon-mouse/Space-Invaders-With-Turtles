@@ -25,6 +25,7 @@ for i in range(12):
     list2.append(enemy)
     enemy.color("grey")
     enemy.goto(-30*i,15)
+
 for i in range(12):
     enemy = turtle.Turtle()
     enemy.showturtle()
@@ -36,6 +37,7 @@ for i in range(12):
     enemy.goto(30*i,15)
 
 list1=[]
+
 
 def bullet():
     laser = turtle.Turtle()
@@ -50,6 +52,7 @@ def bullet():
     laser.speed(0)
     laser.goto(x,y)
     laser.showturtle()
+
 
     
 def right():
