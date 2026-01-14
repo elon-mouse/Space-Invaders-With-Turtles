@@ -38,7 +38,6 @@ for i in range(12):
 
 list1=[]
 
-
 def bullet():
     laser = turtle.Turtle()
     laser.hideturtle()
@@ -65,6 +64,8 @@ def left():
     y = ship.ycor()
     ship.goto(x-30,y)
 
+wn.score=0
+wn.title("Snowflake Catcher. Score: {0}".format(wn.score))
 
 wn.onkeypress(right, "Right")
 wn.onkeypress(left, "Left")
@@ -72,15 +73,18 @@ wn.onkeypress(bullet, "space")
 
 keepgoing = True
 def gameloop():
+    wn.title("Snowflake Catcher. Score: {0}".format(wn.score))
     global keepgoing 
     for b in list1:
         b.showturtle()
         b.goto(b.xcor(),b.ycor()+20)
-        for e in list2: 
+        for e in list2:
             if (e.ycor()-b.ycor())<=2:
                 if abs(e.xcor()-b.xcor())<=2:
+                    wn.score+=1
                     e.hideturtle()
                     list2.remove(e)
+                    
 
     wn.update() 
     if keepgoing: 
