@@ -72,11 +72,10 @@ def gameloop():
     global keepgoing 
     for b in list1:
         b.showturtle()
-        b.forward(30)
+        b.goto(b.xcor(),b.ycor()+20)
         for e in list2: 
-            if (e.ycor()<=-b.xcor())<=30:
-                if abs(e.xcor()-b.xcor())<=30:
-                    wn.score+=1
+            if (e.ycor()-b.ycor())<=2:
+                if abs(e.xcor()-b.xcor())<=2:
                     e.hideturtle()
                     list2.remove(e)
 
