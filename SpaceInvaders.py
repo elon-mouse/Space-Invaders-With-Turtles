@@ -16,25 +16,26 @@ ship.goto(0,-200)
 
 list2=[]
 
-for i in range(12):
-    enemy = turtle.Turtle()
-    enemy.showturtle()
-    enemy.speed(0)
-    enemy.shape("circle")
-    enemy.penup()
-    list2.append(enemy)
-    enemy.color("grey")
-    enemy.goto(-30*i,15)
-
-for i in range(12):
-    enemy = turtle.Turtle()
-    enemy.showturtle()
-    enemy.speed(0)
-    enemy.shape("circle")
-    enemy.penup()
-    list2.append(enemy)
-    enemy.color("grey")
-    enemy.goto(30*i,15)
+for i in range(6):
+    for j in range(8):
+        enemy = turtle.Turtle()
+        enemy.showturtle()
+        enemy.speed(0)
+        enemy.shape("circle")
+        enemy.penup()
+        list2.append(enemy)
+        enemy.color("grey")
+        enemy.goto(-30*i,30*j)
+for i in range(6):
+    for j in range(8):
+        enemy = turtle.Turtle()
+        enemy.showturtle()
+        enemy.speed(0)
+        enemy.shape("circle")
+        enemy.penup()
+        list2.append(enemy)
+        enemy.color("grey")
+        enemy.goto(30*i,30*j)
 
 list1=[]
 
@@ -45,13 +46,12 @@ def bullet():
     laser.shape("circle")
     laser.left(90)
     laser.penup()
-    list1.append(laser)
     x = ship.xcor()
     y = ship.ycor()
     laser.speed(0)
     laser.goto(x,y)
+    list1.append(laser)
     laser.showturtle()
-
 
     
 def right():
@@ -73,8 +73,8 @@ wn.onkeypress(bullet, "space")
 
 keepgoing = True
 def gameloop():
-    wn.title("Snowflake Catcher. Score: {0}".format(wn.score))
-    global keepgoing 
+    wn.title("Space Invaders. Score: {0}".format(wn.score))
+    global keepgoing
     for b in list1:
         b.showturtle()
         b.goto(b.xcor(),b.ycor()+20)
@@ -84,7 +84,9 @@ def gameloop():
                     wn.score+=1
                     e.hideturtle()
                     list2.remove(e)
-                    
+                    b.hideturtle()
+                    list1.remove(b)
+                    break
 
     wn.update() 
     if keepgoing: 
