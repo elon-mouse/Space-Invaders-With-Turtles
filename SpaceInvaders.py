@@ -44,17 +44,7 @@ def changeCooldown():
     global cooldown
     cooldown = False
 
-cooldown1 = False
-def changeCooldown1():
-    global cooldown1
-    cooldown1 = False
 
-def enemymovedown():
-    global cooldown1
-    if cooldown1 == False:
-        e.goto(x,y+30)
-        cooldown = True
-        wn.ontimer(changeCooldown, 100)
 
 def bullet():
     global cooldown
@@ -74,7 +64,20 @@ def bullet():
         list1.append(laser)
         laser.showturtle()
 
+cooldown1 = False
+def changeCooldown1():
+    global cooldown1
+    cooldown1 = False
 
+def enemymovedown():
+    global cooldown1
+    if cooldown1 == False:
+        for e in list2:
+            x = e.xcor()
+            y = e.ycor()
+            e.goto(x,y+3000)
+            cooldown = True
+            wn.ontimer(changeCooldown, 2)
     
 def right():
     x = ship.xcor()
@@ -97,6 +100,7 @@ keepgoing = True
 def gameloop():
     wn.title("Space Invaders. Score: {0}".format(wn.score))
     global keepgoing
+    enemymovedown()
     for b in list1:
         b.showturtle()
         b.goto(b.xcor(),b.ycor()+20)
