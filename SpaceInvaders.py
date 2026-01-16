@@ -16,6 +16,7 @@ ship.goto(0,-200)
 
 list2=[]
 
+cooldown = False
 for i in range(6):
     for j in range(8):
         enemy = turtle.Turtle()
@@ -39,19 +40,27 @@ for i in range(6):
 
 list1=[]
 
+def changeCooldown():
+    global cooldown
+    cooldown = False
+
 def bullet():
-    laser = turtle.Turtle()
-    laser.hideturtle()
-    laser.color("red")
-    laser.shape("circle")
-    laser.left(90)
-    laser.penup()
-    x = ship.xcor()
-    y = ship.ycor()
-    laser.speed(0)
-    laser.goto(x,y)
-    list1.append(laser)
-    laser.showturtle()
+    global cooldown
+    if cooldown == False:
+        laser = turtle.Turtle()
+        laser.hideturtle()
+        laser.color("red")
+        laser.shape("circle")
+        laser.left(90)
+        laser.penup()
+        x = ship.xcor()
+        y = ship.ycor()
+        laser.speed(0)
+        laser.goto(x,y)
+        list1.append(laser)
+        laser.showturtle()
+        cooldown = True
+        wn.ontimer(changeCooldown, 1000)
 
     
 def right():
