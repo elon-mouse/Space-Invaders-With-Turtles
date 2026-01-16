@@ -65,7 +65,7 @@ def left():
     ship.goto(x-30,y)
 
 wn.score=0
-wn.title("Snowflake Catcher. Score: {0}".format(wn.score))
+wn.title("Space Invaders. Score: {0}".format(wn.score))
 
 wn.onkeypress(right, "Right")
 wn.onkeypress(left, "Left")
