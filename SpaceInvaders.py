@@ -40,7 +40,7 @@ for i in range(6):
         enemy.penup()
         list2.append(enemy)
         enemy.color("grey")
-        enemy.goto(30*i,30*j)
+        enemy.goto(30*i+30,30*j)
 
 list3=[]
 
