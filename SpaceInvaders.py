@@ -138,7 +138,7 @@ def gameloop():
     enemymovedown()
     enemyShoot()
 
-    for eb in list3[:]:
+    for eb in list3:
         eb.goto(eb.xcor(), eb.ycor()-15)
 
         if eb.ycor() < -540:
@@ -155,7 +155,7 @@ def gameloop():
             break
 
 
-    for b in list1[:]:
+    for b in list1:
         b.showturtle()
         b.goto(b.xcor(),b.ycor()+20)
 
@@ -164,7 +164,7 @@ def gameloop():
             list1.remove(b)
             
 
-        for e in list2[:]:
+        for e in list2:
             if b.distance(e) < 15:
                 wn.score+=1
                 e.hideturtle()
