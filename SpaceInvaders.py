@@ -1,5 +1,6 @@
 import turtle
 import random
+import time
 
 wn = turtle.Screen()
 ship = turtle.Turtle()
@@ -19,6 +20,9 @@ text.penup()
 text.goto(0,0)
 
 list2=[]
+
+
+start_time = time.time()
 
 for i in range(6):
     for j in range(8):
@@ -140,15 +144,16 @@ def gameloop():
         if eb.ycor() < -540:
             eb.hideturtle()
             list3.remove(eb)
-            
 
         if eb.distance(ship) < 20:
             keepgoing = False
             eb.hideturtle()
             text.clear()
-            text.write("GAME OVER",align="center",font=("Arial", 48, "bold"))
+            elapsed_time = round(time.time() - start_time, 1)
+            text.write("GAME OVER\nYou survived for {0} seconds".format(elapsed_time), align="center", font=("Arial", 48, "bold"))
             wn.title("GAME OVER")
             break
+
 
     for b in list1[:]:
         b.showturtle()
@@ -170,7 +175,8 @@ def gameloop():
                 if len(list2) == 0:
                     keepgoing = False
                     text.clear()
-                    text.write("YOU WIN!\nFinal Score: {0}".format(wn.score), align="center", font=("Arial", 48, "bold"))
+                    elapsed_time = round(time.time() - start_time, 1)
+                    text.write("YOU WIN!\nFinal Score: {0}\nTime taken to win {0} seconds".format(wn.score), align="center", font=("Arial", 48, "bold"))
                     wn.title("YOU WIN! Final Score: {0}".format(wn.score))
                 break
 
