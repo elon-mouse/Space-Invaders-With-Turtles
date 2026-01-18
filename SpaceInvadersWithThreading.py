@@ -1,8 +1,6 @@
 import turtle
 import random
 import time
-import threading
-import queue
 
 
 wn = turtle.Screen()
@@ -26,8 +24,8 @@ text.goto(0,0)
 
 list2=[]
 
-
 start_time = time.time()
+SIDE_DELAY = 40  # seconds before enemies start moving side-to-side
 
 for i in range(5):
     for j in range(11):
@@ -50,6 +48,8 @@ for i in range(5):
         list2.append(enemy)
         enemy.color("grey")
         enemy.goto(30*i+30,30*j)
+
+wn.update()
 
 list3=[]
 
@@ -82,7 +82,6 @@ def changeCooldown():
     global cooldown
     cooldown = False
 
-
 def bullet():
     global cooldown
     if cooldown == False:
@@ -101,13 +100,6 @@ def bullet():
         list1.append(laser)
         laser.showturtle()
 
-gameStarted = False
-move = 30
-
-def startGame():
-    global gameStarted
-    gameStarted = True
-
 
 cooldown1 = False
 def changeCooldown1():
@@ -120,6 +112,7 @@ def changeCooldown2():
     global cooldown2
     cooldown2 = False
 
+
 def enemymovedown():
     global cooldown1
     if cooldown1 == False:
@@ -130,7 +123,8 @@ def enemymovedown():
             y = e.ycor()
             e.goto(x,y-30)
 
-list4 = []
+
+move = 10
 
 def enemymoveside():
     global cooldown2
@@ -140,21 +134,24 @@ def enemymoveside():
         cooldown2 = True
         wn.ontimer(changeCooldown2, 50)
 
-        list4 = []
+        xs = []
         for e in list2:
-            list4.append(e.xcor())
-        if len(list4) > 0:
-            right = max(list4)
-            left = min(list4)
+            xs.append(e.xcor())
+
+        if len(xs) > 0:
+            right = max(xs)
+            left = min(xs)
+
             if right > 900:
-                move = -30
+                move = -abs(move)
             if left < -900:
-                move = 30
+                move = abs(move)
 
         for e in list2:
             x = e.xcor()
             y = e.ycor()
             e.goto(x + move, y)
+
 
 def right():
     x = ship.xcor()
@@ -166,6 +163,7 @@ def left():
     y = ship.ycor()
     ship.goto(x-30,y)
 
+
 wn.score=0
 wn.title("Space Invaders. Score: {0}".format(wn.score))
 
@@ -175,52 +173,19 @@ wn.onkeypress(left, "Left")
 wn.onkeypress(left, "a")
 wn.onkeypress(bullet, "space")
 
-wn.ontimer(startGame, 20000)
-
-# -------------------------
-# THREADING (safe way)
-# Background thread ONLY schedules actions.
-# Main thread (gameloop) executes turtle movement/drawing.
-# -------------------------
-action_q = queue.Queue()
-
-def enemy_thread():
-    # Wait until game starts (20 seconds)
-    while keepgoing and not gameStarted:
-        time.sleep(0.01)
-
-    # Side move tick + move-down tick
-    next_side = time.time()
-    next_down = time.time() + 15.0
-
-    while keepgoing:
-        now = time.time()
-
-        if now >= next_side:
-            action_q.put("side")
-            next_side = now + 0.05   # 50ms
-
-        if now >= next_down:
-            action_q.put("down")
-            next_down = now + 15.0   # 15 seconds
-
-        time.sleep(0.005)
-
 keepgoing = True
-threading.Thread(target=enemy_thread, daemon=True).start()
 
 def gameloop():
     wn.title("Space Invaders. Score: {0}".format(wn.score))
     global keepgoing
 
-    while not action_q.empty():
-        action = action_q.get_nowait()
-        if action == "side" and gameStarted:
-            enemymoveside()
-        if action == "down" and gameStarted:
-            enemymovedown()
-    if gameStarted:
-        enemyShoot()
+    enemymovedown()
+
+    # ONLY delay side movement by 20 seconds
+    if time.time() - start_time >= SIDE_DELAY:
+        enemymoveside()
+
+    enemyShoot()
 
     for eb in list3[:]:
         eb.goto(eb.xcor(), eb.ycor()-15)
@@ -241,7 +206,6 @@ def gameloop():
             break
 
     for b in list1[:]:
-        b.showturtle()
         b.goto(b.xcor(),b.ycor()+20)
 
         if b.ycor() > 540:
