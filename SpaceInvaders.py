@@ -135,6 +135,7 @@ keepgoing = True
 def gameloop():
     wn.title("Space Invaders. Score: {0}".format(wn.score))
     global keepgoing
+    
     enemymovedown()
     enemyShoot()
 
@@ -150,6 +151,7 @@ def gameloop():
             eb.hideturtle()
             text.clear()
             elapsed_time = round(time.time() - start_time, 1)
+            text.goto(0,400)
             text.write("GAME OVER\nYou survived for {0} seconds".format(elapsed_time), align="center", font=("Arial", 48, "bold"))
             wn.title("GAME OVER")
             break
@@ -162,7 +164,6 @@ def gameloop():
         if b.ycor() > 540:
             b.hideturtle()
             list1.remove(b)
-            
 
         for e in list2:
             if b.distance(e) < 15:
