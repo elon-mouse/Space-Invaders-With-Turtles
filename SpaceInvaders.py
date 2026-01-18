@@ -12,6 +12,11 @@ ship.left(90)
 ship.penup()
 ship.goto(0,-200)
 
+text = turtle.Turtle()
+text.hideturtle()
+text.color("white")
+text.penup()
+
 list2=[]
 
 for i in range(6):
@@ -116,9 +121,11 @@ def gameloop():
                 list2.remove(e)
                 b.hideturtle()
                 list1.remove(b)
-                if len(list2) == 0:
-                    keepgoing = False
-                    wn.title("YOU WIN! Final Score".format(wn.score))
+            if len(list2) == 0:
+                keepgoing = False
+                text.write(
+                    "YOU WIN!\nFinal Score: {0}".format(wn.score), align="center", font=("Arial", 48, "bold"))
+                wn.title("YOU WIN! Final Score: {0}".format(wn.score))
                 break
     wn.update()
     if keepgoing:
