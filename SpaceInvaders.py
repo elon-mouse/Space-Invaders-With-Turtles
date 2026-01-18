@@ -168,7 +168,7 @@ wn.onkeypress(left, "Left")
 wn.onkeypress(left, "a")
 wn.onkeypress(bullet, "space")
 
-wn.ontimer(startGame, 20000)
+wn.ontimer(startGame, 40000)
 
 keepgoing = True
 def gameloop():
