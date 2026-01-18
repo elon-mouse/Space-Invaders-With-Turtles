@@ -106,7 +106,7 @@ def enemymovedown():
     global cooldown1
     if cooldown1 == False:
         cooldown1 = True
-        wn.ontimer(changeCooldown1, 20000)
+        wn.ontimer(changeCooldown1, 15000)
         for e in list2:
             x = e.xcor()
             y = e.ycor()
