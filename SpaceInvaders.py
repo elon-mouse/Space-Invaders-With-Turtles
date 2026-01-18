@@ -102,6 +102,12 @@ def changeCooldown1():
     global cooldown1
     cooldown1 = False
 
+
+cooldown2 = False
+def changeCooldown2():
+    global cooldown2
+    cooldown2 = False
+
 def enemymovedown():
     global cooldown1
     if cooldown1 == False:
@@ -111,6 +117,28 @@ def enemymovedown():
             x = e.xcor()
             y = e.ycor()
             e.goto(x,y-30)
+            
+def enemymoveside():
+    global cooldown2
+    global move
+    move = 30
+    if cooldown2 == False:
+        cooldown2 = True
+        wn.ontimer(changeCooldown2, 20000)
+        list4 = []
+        for e in list2:
+            list4.append(e.xcor())
+        if len(list4) > 0:
+            right = max(list4)
+            left = min(list4)
+            if right > 900:
+                move = -30
+            if left < -900:
+                move = 30
+        for e in list2:
+            x = e.xcor()
+            y = e.ycor()
+            e.goto(x + move, y)
 
 
 def right():
@@ -138,6 +166,7 @@ def gameloop():
     global keepgoing
     
     enemymovedown()
+    enemymoveside()
     enemyShoot()
 
     for eb in list3:
@@ -147,7 +176,7 @@ def gameloop():
             eb.hideturtle()
             list3.remove(eb)
 
-        if eb.distance(ship) < 20 and e.distance(ship) < 20:
+        if eb.distance(ship) < 20:
             keepgoing = False
             eb.hideturtle()
             text.clear()
@@ -160,7 +189,6 @@ def gameloop():
     for b in list1:
         b.showturtle()
         b.goto(b.xcor(),b.ycor()+20)
-
         if b.ycor() > 540:
             b.hideturtle()
             list1.remove(b)
