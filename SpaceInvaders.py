@@ -24,8 +24,8 @@ list2=[]
 
 start_time = time.time()
 
-for i in range(6):
-    for j in range(8):
+for i in range(5):
+    for j in range(11):
         enemy = turtle.Turtle()
         enemy.showturtle()
         enemy.speed(0)
@@ -35,8 +35,8 @@ for i in range(6):
         enemy.color("grey")
         enemy.goto(-30*i,30*j)
 
-for i in range(6):
-    for j in range(8):
+for i in range(5):
+    for j in range(11):
         enemy = turtle.Turtle()
         enemy.showturtle()
         enemy.speed(0)
