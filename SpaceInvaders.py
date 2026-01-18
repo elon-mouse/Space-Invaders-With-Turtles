@@ -116,8 +116,10 @@ def gameloop():
                 list2.remove(e)
                 b.hideturtle()
                 list1.remove(b)
+                if len(list2) == 0:
+                    keepgoing = False
+                    wn.title("YOU WIN! Final Score".format(wn.score))
                 break
-
     wn.update()
     if keepgoing:
         wn.ontimer(gameloop, 16)
