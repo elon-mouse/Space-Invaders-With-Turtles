@@ -26,6 +26,7 @@ for i in range(6):
         list2.append(enemy)
         enemy.color("grey")
         enemy.goto(-30*i,30*j)
+
 for i in range(6):
     for j in range(8):
         enemy = turtle.Turtle()
@@ -43,7 +44,6 @@ cooldown = False
 def changeCooldown():
     global cooldown
     cooldown = False
-
 
 
 def bullet():
@@ -72,18 +72,19 @@ def changeCooldown1():
 def enemymovedown():
     global cooldown1
     if cooldown1 == False:
+        cooldown1 = True
+        wn.ontimer(changeCooldown1, 20000) 
         for e in list2:
             x = e.xcor()
             y = e.ycor()
-            e.goto(x,y+3000)
-            cooldown = True
-            wn.ontimer(changeCooldown, 2)
-    
+            e.goto(x,y-30)
+
+
 def right():
     x = ship.xcor()
     y = ship.ycor()
     ship.goto(x+30,y)
-    
+
 def left():
     x = ship.xcor()
     y = ship.ycor()
@@ -94,29 +95,35 @@ wn.title("Space Invaders. Score: {0}".format(wn.score))
 
 wn.onkeypress(right, "Right")
 wn.onkeypress(left, "Left")
-wn.onkeypress(bullet, "space") 
+wn.onkeypress(bullet, "space")
 
 keepgoing = True
 def gameloop():
     wn.title("Space Invaders. Score: {0}".format(wn.score))
     global keepgoing
     enemymovedown()
-    for b in list1:
+
+    for b in list1:              
         b.showturtle()
         b.goto(b.xcor(),b.ycor()+20)
-        for e in list2:
-            if (e.ycor()-b.ycor())<=2:
-                if abs(e.xcor()-b.xcor())<=2:
-                    wn.score+=1
-                    e.hideturtle()
-                    list2.remove(e)
-                    b.hideturtle()
-                    list1.remove(b)
-                    break
 
-    wn.update() 
-    if keepgoing: 
+        if b.ycor() > 540:                 
+            b.hideturtle()
+            list1.remove(b)
+
+        for e in list2:                 
+            if b.distance(e) < 15:         
+                wn.score+=1
+                e.hideturtle()
+                list2.remove(e)
+                b.hideturtle()
+                list1.remove(b)
+                break
+
+    wn.update()
+    if keepgoing:
         wn.ontimer(gameloop, 16)
+
 gameloop()
 wn.listen()
 wn.mainloop()
